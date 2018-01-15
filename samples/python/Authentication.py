@@ -17,13 +17,13 @@ auth_endpoint = "/cas/v1/api-key"
 class Authentication:
 
    #def __init__(self, username,password):
-   def __init__(self, apikey):
+   def __init__(self):  #, apikey):
     #self.username=username
     #self.password=password
-    self.apikey=apikey
+    self.apikey="b3e4c263-fc38-4d7c-aaed-17ca239beed5"
     self.service="http://umlsks.nlm.nih.gov"
 
-   def gettgt(self):
+   def gettgt(self):   # Ticket-Granting Ticket
      #params = {'username': self.username,'password': self.password}
      params = {'apikey': self.apikey}
      h = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain", "User-Agent":"python" }
@@ -34,7 +34,7 @@ class Authentication:
      tgt = response.xpath('//form/@action')[0]
      return tgt
 
-   def getst(self,tgt):
+   def getst(self,tgt):    #Service Ticket
 
      params = {'service': self.service}
      h = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain", "User-Agent":"python" }
